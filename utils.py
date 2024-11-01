@@ -1,4 +1,5 @@
 from PIL import Image
+from fmt_wos import FMTWosPlanner
 import numpy as np
 import networkx as nx
 from fmt import FMTPlanner
@@ -12,11 +13,22 @@ def load_map_design(img_path: str, size: list) -> np.ndarray:
     return map_design
 
 
-def visualize_result(map_design: np.ndarray, planner: FMTPlanner,
+# def visualize_result(map_design: np.ndarray, planner: FMTPlanner,
+#                      path_info: dict) -> None:
+#     plt.figure()
+#     plt.imshow(map_design, cmap="gray")
+#     nx.draw(planner.graph, [x[::-1] for x in planner.node_list],
+#             node_size=1,
+#             alpha=.5)
+#     path = path_info["path"]
+#     plt.plot(path[:, 1], path[:, 0], 'r-', lw=2)
+    
+    
+def visualize_result2(map_design: np.ndarray, planner: FMTWosPlanner,
                      path_info: dict) -> None:
     plt.figure()
     plt.imshow(map_design, cmap="gray")
-    nx.draw(planner.graph, [x[::-1] for x in planner.node_list],
+    nx.draw(planner.graph, [x.x for x in planner.node_list],
             node_size=1,
             alpha=.5)
     path = path_info["path"]
